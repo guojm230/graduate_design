@@ -1,0 +1,7 @@
+design_server/.gradle/
+design_server/.idea/
+design_server/build/
+
+design_client/design_client/bin
+design_client/design_client/obj
+design_client/.vs/
