@@ -7,7 +7,39 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\Components\LoginControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\CustomControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\DefaultConfigControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\HomeControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SearchControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Components\LoginControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CustomControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\DefaultConfigControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\HomeControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SearchControl.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

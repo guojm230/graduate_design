@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,33 @@ namespace design_client
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void NextControl(object sender, RoutedEventArgs e)
+        {
+            var count = this.ControlContent.Items.Count;
+            if (this.ControlContent.SelectedIndex < count - 1)
+            {
+                this.ControlContent.SelectedIndex++;
+            }
+        }
+
+        private void PrevControl(object sender, RoutedEventArgs e)
+        {
+            var count = this.ControlContent.Items.Count;
+            if (this.ControlContent.SelectedIndex > 0)
+            {
+                this.ControlContent.SelectedIndex--;
+            }
+        }
+
+        private void ControlTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var sel = this.ControlTab.SelectedIndex;
+            if (this.ControlContent != null && sel>=0 && sel < this.ControlContent.Items.Count)
+            {
+                this.ControlContent.SelectedIndex = sel;
+            }
         }
     }
 }
