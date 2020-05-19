@@ -9,6 +9,13 @@
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="BlueGrey" SecondaryColor="Lime" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="TitleFont" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="SimSun"/>
+                <Setter Property="Foreground" Value="#FF938686"/>
+            </Style>
+            <Style x:Key="TitleFG" TargetType="Control">
+                <Setter Property="Foreground" Value="#FF938686"></Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

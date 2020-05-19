@@ -17,4 +17,8 @@
     <PackageReference Include="SolidWorks.Interop.swconst" Version="27.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\Images\" />
+  </ItemGroup>
+
 </Project>

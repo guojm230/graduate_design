@@ -1,4 +1,9 @@
-﻿using System;
+﻿using design_client.Context;
+using design_client.Model;
+using design_client.Views;
+using design_client.Views.Components;
+using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -21,36 +26,57 @@ namespace design_client
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool ShowLoginBtn { get; set; } = true;
+
+        private SecurityHandler<User> loginHandler = user =>
+        {
+            if (SecurityContext.IsLogin())
+            {
+                
+            } else
+            {
+
+            }
+        };
+
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void NextControl(object sender, RoutedEventArgs e)
-        {
-            var count = this.ControlContent.Items.Count;
-            if (this.ControlContent.SelectedIndex < count - 1)
-            {
-                this.ControlContent.SelectedIndex++;
-            }
-        }
-
-        private void PrevControl(object sender, RoutedEventArgs e)
-        {
-            var count = this.ControlContent.Items.Count;
-            if (this.ControlContent.SelectedIndex > 0)
-            {
-                this.ControlContent.SelectedIndex--;
-            }
+            this.DataContext = this;
+            SecurityContext.Logined += loginHandler;
+            SecurityContext.Logouted += loginHandler;
         }
 
         private void ControlTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var sel = this.ControlTab.SelectedIndex;
-            if (this.ControlContent != null && sel>=0 && sel < this.ControlContent.Items.Count)
+            if (sel >= 0)
+            {
+                this.ControlTabProvider?.UnselectAll();
+            }
+            if (this.ControlContent != null && sel >= 0 && sel < this.ControlContent.Items.Count)
             {
                 this.ControlContent.SelectedIndex = sel;
             }
+        }
+
+        private void ControlTab_SelectionChanged_Provider(object sender, SelectionChangedEventArgs e)
+        {
+            var sel = this.ControlTabProvider.SelectedIndex;
+            if (sel >= 0)
+            {
+                this.ControlTab.UnselectAll();
+            }
+            var offset = this.ControlTab.Items.Count;
+            if (this.ControlContent != null && sel >= 0 && sel + offset < this.ControlContent.Items.Count)
+            {
+                this.ControlContent.SelectedIndex = offset + sel;
+            }
+        }
+
+        private void ShowLoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.TopDialog.ShowDialog(new LoginControl(this.TopDialog));
         }
     }
 }

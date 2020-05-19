@@ -10,6 +10,12 @@
     <Compile Update="Views\Components\LoginControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Components\MotorPartItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Components\VerticalMenu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\CustomControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -19,7 +25,13 @@
     <Compile Update="Views\HomeControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ManagerControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SearchControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UploadControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -28,6 +40,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Components\LoginControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Components\MotorPartItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Components\VerticalMenu.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CustomControl.xaml">
@@ -39,7 +57,13 @@
     <Page Update="Views\HomeControl.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\ManagerControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\SearchControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UploadControl.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

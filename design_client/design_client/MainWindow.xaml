@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:design_client.Views"
         xmlns:mv="clr-namespace:design_client.Model.View"
+        xmlns:cp="clr-namespace:design_client.Views.Components"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
@@ -14,11 +15,11 @@
         mc:Ignorable="d"
         Height="700" Width="1020">
     <WindowChrome.WindowChrome>
-        <WindowChrome NonClientFrameEdges="Left,Bottom,Right" GlassFrameThickness="-1" CaptionHeight="50"/>
+        <WindowChrome NonClientFrameEdges="Bottom,Right" GlassFrameThickness="-1" CaptionHeight="50"/>
     </WindowChrome.WindowChrome>
     <Window.Template>
         <ControlTemplate TargetType="Window">
-            <Grid Margin="0 0 0 0">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition/>
@@ -29,61 +30,87 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <DockPanel Margin="10 0 0 0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
+                <DockPanel Margin="20 0 0 0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
                     <TextBlock FontStyle="Italic">Design</TextBlock>
-                </DockPanel>
-
-                <DockPanel Grid.Row="0" Grid.Column="2">
-
                 </DockPanel>
                 <ContentPresenter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
             </Grid>
         </ControlTemplate>
     </Window.Template>
     <!--Body-->
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <!--左侧菜单栏-->
-        <StackPanel Width="200" Grid.Row="0" Grid.Column="0" Background="White">
-            <ListView SelectedIndex="0" Name="ControlTab"
-                      SelectionChanged="ControlTab_SelectionChanged">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel LastChildFill="False">
-                            <materialDesign:PackIcon Kind="{Binding IconKind}" DockPanel.Dock="Left"/>
-                            <TextBlock FontFamily="SimSun" Margin="5 0 0 0" 
-                                       DockPanel.Dock="Right" Text="{Binding Title}"/>
-                        </DockPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.ItemsSource>
-                    <x:Array Type="mv:MenuTabItem">
-                        <mv:MenuTabItem Title="主页" IconKind="Home"/>
-                        <mv:MenuTabItem Title="搜索" IconKind="Home"/>
-                        <mv:MenuTabItem Title="默认配置" IconKind="Home"/>
-                        <mv:MenuTabItem Title="更改配置" IconKind="Home"/>
-                    </x:Array>
-                </ListView.ItemsSource>
-            </ListView>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0">
-            
-        </StackPanel>
-        <materialDesign:Transitioner Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"  SelectedIndex="0" 
+    <materialDesign:DialogHost x:Name="TopDialog">
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--左侧菜单栏-->
+            <StackPanel Width="200" Grid.Row="0" Grid.Column="0" Margin="0" Background="White">
+                <TextBlock Margin="10 15 0 10"
+                       FontSize="14"
+                       Style="{StaticResource TitleFont}" >
+                设计商
+                </TextBlock>
+                <cp:VerticalMenu SelectedIndex="0" x:Name="ControlTab" 
+                             SelectionChanged="ControlTab_SelectionChanged">
+                    <cp:VerticalMenu.ItemsSource>
+                        <x:Array Type="mv:MenuTabItem">
+                            <mv:MenuTabItem Title="主页" IconKind="Home"/>
+                            <mv:MenuTabItem Title="搜索" IconKind="Home"/>
+                            <mv:MenuTabItem Title="默认配置" IconKind="Home"/>
+                            <mv:MenuTabItem Title="更改配置" IconKind="Home"/>
+                        </x:Array>
+                    </cp:VerticalMenu.ItemsSource>
+                </cp:VerticalMenu>
+                <TextBlock Margin="10 15 0 10"
+                       FontSize="14"
+                       Style="{StaticResource TitleFont}" >
+                供应商
+                </TextBlock>
+                <cp:VerticalMenu x:Name="ControlTabProvider" 
+                             SelectionChanged="ControlTab_SelectionChanged_Provider">
+                    <cp:VerticalMenu.ItemsSource>
+                        <x:Array Type="mv:MenuTabItem">
+                            <mv:MenuTabItem Title="上传零件" IconKind="Home"/>
+                            <mv:MenuTabItem Title="管理零件" IconKind="Home"/>
+                        </x:Array>
+                    </cp:VerticalMenu.ItemsSource>
+                </cp:VerticalMenu>
+                <Separator Margin="10 0 0 10" Background="#F5F5F5"></Separator>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+                <StackPanel Orientation="Vertical">
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                        HorizontalContentAlignment="Left"
+                        Visibility="{Binding ShowLoginBtn}"
+                        Click="ShowLoginBtn_Click" Cursor="Hand"
+                        >
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Login"/>
+                            <TextBlock Style="{StaticResource TitleFont}" Margin="10 0 0 0"
+                                   >
+                            供应商登录
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+            <!--登录区域-->
+            <materialDesign:Transitioner Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"  SelectedIndex="0" 
                                      Name="ControlContent"
                                      >
-            <local:HomeControl/>
-            <local:SearchControl/>
-            <local:DefaultConfigControl/>
-            <local:CustomControl/>
-        </materialDesign:Transitioner>
-    </Grid>
-
+                <local:HomeControl/>
+                <local:SearchControl/>
+                <local:DefaultConfigControl/>
+                <local:CustomControl/>
+                <local:UploadControl/>
+                <local:ManagerControl/>
+            </materialDesign:Transitioner>
+        </Grid>
+    </materialDesign:DialogHost>
+    
 </Window>
