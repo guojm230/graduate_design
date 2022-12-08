@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="3.1.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="ShowMeTheXAML" Version="1.0.12" />
     <PackageReference Include="SolidWorks.Interop.sldworks" Version="27.3.0" />
     <PackageReference Include="SolidWorks.Interop.swconst" Version="27.3.0" />
